@@ -292,12 +292,12 @@ export default function PoliticaPrivacidad() {
                 <Link to="/politica-privacidad" className="hover:underline">
                   Política de Privacidad
                 </Link>
-                <a href="/aviso-legal" className="hover:underline">
+                <Link to="/aviso-legal" className="hover:underline">
                   Aviso legal
-                </a>
-                <a href="/politica-cookies" className="hover:underline">
+                </Link>
+                <Link to="/politica-cookies" className="hover:underline font-semibold">
                   Política de cookies
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -306,7 +306,7 @@ export default function PoliticaPrivacidad() {
 
       {/* WHATSAPP FLOATING */}
       <a
-        href="https://wa.me/34607096268?text=Hola%20me%20gustaría%20pedir%20una%20cita"
+        href="https://wa.me/34607096268?text=Hola%2C%20me%20gustaría%20pedir%20una%20cita"
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"

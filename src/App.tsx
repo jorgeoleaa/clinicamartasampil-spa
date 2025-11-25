@@ -33,7 +33,22 @@ const ClinicaOftalmologica = () => {
       src: "imgs/PXL_20250718_113911109.MP.jpg",
       alt: "Sala de equipamiento avanzado",
     },
-    { src: "imgs/sala_espera.jpg", alt: "Sala de espera" },
+    { 
+      src: "imgs/sala_espera.jpg", 
+      alt: "Sala de espera"
+    },
+    {
+      src: "imgs/galeria.jpg",
+      alt: "Foto 1"
+    },
+    {
+      src: "imgs/galeria1.jpg",
+      alt: "Foto 2"
+    },
+    {
+      src: "imgs/galeria2.jpg",
+      alt: "Foto 3"
+    }
   ];
 
   useEffect(() => {
@@ -202,7 +217,7 @@ const ClinicaOftalmologica = () => {
             <div>
               <h2 className="text-3xl font-medium mb-4">Sobre mí</h2>
               <p className="text-[#7A7A7A] mb-4">
-                Especialista en oftalmología con más de 15 años de experiencia.
+                Oftalmóloga con más de 15 años de experiencia, apasionada por ofrecer una oftalmología clara, cercana y basada en evidencia.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mt-6">
                 <Link
@@ -379,18 +394,15 @@ const ClinicaOftalmologica = () => {
                 <strong>Colegiada nº:</strong> 273607051
               </p>
               <div className="flex flex-col mt-2 space-y-1">
-                <Link
-                  to="/politica-privacidad"
-                  className="hover:underline"
-                >
+                <Link to="/politica-privacidad" className="hover:underline">
                   Política de Privacidad
                 </Link>
-                <a href="/aviso-legal" className="hover:underline">
+                <Link to="/aviso-legal" className="hover:underline">
                   Aviso legal
-                </a>
-                <a href="/politica-cookies" className="hover:underline">
+                </Link>
+                <Link to="/politica-cookies" className="hover:underline font-semibold">
                   Política de cookies
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -399,7 +411,7 @@ const ClinicaOftalmologica = () => {
 
       {/* WHATSAPP FLOATING */}
       <a
-        href="https://wa.me/34607096268?text=Hola%20me%20gustaría%20pedir%20una%20cita"
+        href="https://wa.me/34607096268?text=Hola%2C%20me%20gustaría%20pedir%20una%20cita"
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"

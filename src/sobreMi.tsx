@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronRight, Dot } from "lucide-react"; 
+import { Menu, X, ChevronRight, Dot, Link } from "lucide-react";
 
 // --- DATOS (sin cambios) ---
 const experienciaData = [
@@ -10,13 +10,13 @@ const experienciaData = [
   },
   {
     fecha: "2017 - 2018",
-    titulo: "Facultativa Especialista de Area en Oftalmología",
+    titulo: "Facultativa Especialista de Área de Oftalmología",
     lugar:
       "Complejo Hospitalario Universitario de Ourense (con especial dedicación a oftalmología pediátrica y uveítis)",
   },
   {
     fecha: "2018 - 2025",
-    titulo: "Facultativa Especialista de Area de Oftalmología",
+    titulo: "Facultativa Especialista de Área de Oftalmología",
     lugar: "Hospital Comarcal de Monforte de Lemos",
   },
   {
@@ -50,11 +50,11 @@ function MeritoCard({ text }: MeritoCardProps) {
 export default function SobreMi() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   // ================================================
   // ===== INICIO DE LA CORRECCIÓN =====
   // ================================================
-  
+
   // 1. Eliminamos el comentario 'eslint-disable-next-line'
   // 2. Usamos 'setActiveSection' en los 'onClick' del menú
   // 3. Cambiamos el estado inicial a "sobre-mi"
@@ -78,11 +78,10 @@ export default function SobreMi() {
     <div className="bg-[#FAF8F4] text-[#2E2E2E]">
       {/* HEADER */}
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "backdrop-blur-sm bg-[#EDE1CC]/90 shadow-sm"
-            : "bg-[#EDE1CC]"
-        }`}
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
+          ? "backdrop-blur-sm bg-[#EDE1CC]/90 shadow-sm"
+          : "bg-[#EDE1CC]"
+          }`}
       >
         <div className="container mx-auto px-5 py-4 flex items-center justify-between">
           {/* Logo (sin cambios) */}
@@ -107,11 +106,10 @@ export default function SobreMi() {
                   href="/"
                   // --- onClick AÑADIDO ---
                   onClick={() => setActiveSection(section)}
-                  className={`text-sm uppercase tracking-wider transition ${
-                    activeSection === section
-                      ? "text-[#B39B7C]"
-                      : "text-[#2E2E2E] hover:text-[#B39B7C]"
-                  }`}
+                  className={`text-sm uppercase tracking-wider transition ${activeSection === section
+                    ? "text-[#B39B7C]"
+                    : "text-[#2E2E2E] hover:text-[#B39B7C]"
+                    }`}
                 >
                   Inicio
                 </a>
@@ -120,11 +118,10 @@ export default function SobreMi() {
                   key={section}
                   // --- onClick AÑADIDO ---
                   onClick={() => setActiveSection(section)}
-                  className={`text-sm uppercase tracking-wider transition ${
-                    activeSection === section
-                      ? "text-[#B39B7C]"
-                      : "text-[#2E2E2E] hover:text-[#B39B7C]"
-                  }`}
+                  className={`text-sm uppercase tracking-wider transition ${activeSection === section
+                    ? "text-[#B39B7C]"
+                    : "text-[#2E2E2E] hover:text-[#B39B7C]"
+                    }`}
                 >
                   {section === "sobre-mi" && "Sobre mí"}
                   {section === "galeria" && "Galería"}
@@ -183,7 +180,7 @@ export default function SobreMi() {
       </header>
 
       {/* --- RESTO DEL COMPONENTE (SIN CAMBIOS) --- */}
-      
+
       {/* HERO */}
       <section
         className="relative h-[70vh] flex items-center justify-start px-8 md:px-16 bg-cover bg-center"
@@ -207,27 +204,27 @@ export default function SobreMi() {
       <section className="py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-12">
         <div className="w-full md:w-1/2">
           <img
-            src="imgs/Picsart_25-07-04_21-29-02-922.jpg"
+            src="imgs/sobre-mi.jpg"
             alt="Consulta Oftalmológica"
             className="rounded-2xl shadow-sm border border-[#EDE7DE] object-cover max-w-[300px] mx-auto"
           />
         </div>
         <div className="w-full md:w-1/2">
-          <p className="uppercase text-sm tracking-wide text-[#B39B7C] font-semibold">
+          <p className="text-center md:text-left uppercase text-sm tracking-wide text-[#B39B7C] font-semibold">
             Compromiso
           </p>
           <h2 className="text-3xl font-medium mb-4 text-[#2E2E2E]">Mi forma de entender la medicina</h2>
           <p className="text-[#7A7A7A] leading-relaxed mb-4">
-            Creo en una oftalmología que pone a la persona en el centro. En mi consulta, cada paciente recibe una atención 
+            Creo en una oftalmología que pone a la persona en el centro. En mi consulta, cada paciente recibe una atención
             individualizada, basada en la escucha, el rigor científico y el tiempo necesario para valorar a fondo su caso.
           </p>
           <p className="text-[#7A7A7A] leading-relaxed mb-6">
-            Mi forma de trabajar combina la oftalmología más avanzada con una visión integradora de la salud: considero que 
+            Mi forma de trabajar combina la oftalmología más avanzada con una visión integradora de la salud: considero
             siempre el estado general, los tratamientos sistémicos y los hábitos de vida, porque los ojos reflejan mucho más de lo que vemos
             en ellos.
           </p>
           <p className="text-[#7A7A7A] leading-relaxed mb-6">
-            Mi objetivo es ofrecer un diagnóstico y tratamiento personalizados, abordando cada problema visual desde una perspectiva 
+            Mi objetivo es ofrecer un diagnóstico y tratamiento personalizados, abordando cada problema visual desde una perspectiva
             global, para cuidar no solo la visión, sino el bienestar del paciente en su conjunto.
           </p>
         </div>
@@ -259,6 +256,39 @@ export default function SobreMi() {
               <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
               <div>
                 <span className="font-semibold text-[#2E2E2E]">
+                  Estancia formativa en Unidad de Superficie e Inflamación Ocular en el Hospital Clínico San Carlos de Madrid
+                </span>
+                <span className="text-[#7A7A7A] ml-1">
+                  (2014)
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
+              <div>
+                <span className="font-semibold text-[#2E2E2E]">
+                  Estancia formativa en la Unidad de Retina Quirúrgica y Tumores Intraoculares del Adulto en el Complejo Hospitalario Universitario de Santiago de Compostela
+                </span>
+                <span className="text-[#7A7A7A] ml-1">
+                  (2015)
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
+              <div>
+                <span className="font-semibold text-[#2E2E2E]">
+                  Master Universitario en Investigación en Ciencias de la Visión
+                </span>
+                <span className="text-[#7A7A7A] ml-1">
+                  (2014)
+                </span>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
+              <div>
+                <span className="font-semibold text-[#2E2E2E]">
                   Especialista en Oftalmología
                 </span>
                 <span className="text-[#7A7A7A] ml-1">
@@ -270,18 +300,7 @@ export default function SobreMi() {
               <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
               <div>
                 <span className="font-semibold text-[#2E2E2E]">
-                    Master Universitario en Investigación en Ciencias de la Visión
-                </span>
-                <span className="text-[#7A7A7A] ml-1">
-                  (2014)
-                </span>
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
-              <div>
-                <span className="font-semibold text-[#2E2E2E]">
-                    Master Propio en Oftalmología
+                  Master Propio en Oftalmología
                 </span>
                 <span className="text-[#7A7A7A] ml-1">
                   (2019)
@@ -292,7 +311,7 @@ export default function SobreMi() {
               <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
               <div>
                 <span className="font-semibold text-[#2E2E2E]">
-                    Experta Universitaria en Cirugía Oftalmológica
+                  Experta Universitaria en Cirugía Oftalmológica
                 </span>
                 <span className="text-[#7A7A7A] ml-1">
                   (2019)
@@ -303,7 +322,7 @@ export default function SobreMi() {
               <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
               <div>
                 <span className="font-semibold text-[#2E2E2E]">
-                    Experta Universitaria en Glaucoma y Patología Ocular Pediátrica
+                  Experta Universitaria en Glaucoma y Patología Ocular Pediátrica
                 </span>
                 <span className="text-[#7A7A7A] ml-1">
                   (2019)
@@ -314,7 +333,7 @@ export default function SobreMi() {
               <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
               <div>
                 <span className="font-semibold text-[#2E2E2E]">
-                    Experta Universitaria en Uveítis y Retina
+                  Experta Universitaria en Uveítis y Retina
                 </span>
                 <span className="text-[#7A7A7A] ml-1">
                   (2019)
@@ -325,7 +344,7 @@ export default function SobreMi() {
               <ChevronRight size={20} className="text-[#B39B7C] mt-1 flex-shrink-0" />
               <div>
                 <span className="font-semibold text-[#2E2E2E]">
-                    Master en Peritaje Médico y Valoración del Daño Corporal 
+                  Master en Peritaje Médico y Valoración del Daño Corporal
                 </span>
                 <span className="text-[#7A7A7A] ml-1">
                   (en curso)
@@ -470,15 +489,15 @@ export default function SobreMi() {
                 <strong>Colegiada nº:</strong> 273607051
               </p>
               <div className="flex flex-col mt-2 space-y-1">
-                <a href="/politica-privacidad" className="hover:underline">
-                  Política de privacidad
-                </a>
-                <a href="/aviso-legal" className="hover:underline">
+                <Link to="/politica-privacidad" className="hover:underline">
+                  Política de Privacidad
+                </Link>
+                <Link to="/aviso-legal" className="hover:underline font-semibold">
                   Aviso legal
-                </a>
-                <a href="/politica-cookies" className="hover:underline">
+                </Link>
+                <Link to="/politica-cookies" className="hover:underline">
                   Política de cookies
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -487,7 +506,7 @@ export default function SobreMi() {
 
       {/* WHATSAPP FLOATING */}
       <a
-        href="https://wa.me/34607096268?text=Hola%20me%20gustaría%20pedir%20una%20cita"
+        href="https://wa.me/34607096268?text=Hola%2C%20me%20gustaría%20pedir%20una%20cita"
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"

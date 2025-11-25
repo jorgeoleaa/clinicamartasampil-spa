@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import SobreMi from './sobreMi.tsx'
 import ScrollToTop from './scrollTop.tsx' // <-- importa el componente
 import PoliticaPrivacidad from './politicaPrivacidad.tsx'
+import CookiesPolitica from './cookiesPolitica.tsx'
+import AvisoLegal from './avisoLegal.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +17,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<App />} />
         <Route path="/sobremi" element={<SobreMi />} />
         <Route path='/politica-privacidad' element={<PoliticaPrivacidad/>} />
+        <Route path='/politica-cookies' element={<CookiesPolitica/>} />
+        <Route path='/aviso-legal' element={<AvisoLegal/>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
