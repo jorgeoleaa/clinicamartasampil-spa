@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import {
   Calendar,
-  Menu,
-  X,
   ChevronLeft,
   ChevronRight,
   Phone,
   Mail,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Footer from "./components/footer";
+import Header from "./components/header";
 
 const ClinicaOftalmologica = () => {
   const [activeSection, setActiveSection] = useState("inicio");
@@ -81,76 +81,13 @@ const ClinicaOftalmologica = () => {
   return (
     <div className="min-h-screen bg-white text-[#2E2E2E]">
       {/* HEADER */}
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "backdrop-blur-sm bg-[#EDE1CC]/90 shadow-sm"
-            : "bg-[#EDE1CC]"
-        }`}
-      >
-        <div className="container mx-auto px-5 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img
-              src="imgs/logo_marta_sampil_vector.png"
-              alt="Logo Clínica Oftalmológica Dra. Marta Sampil"
-              className="h-12 md:h-12 w-auto object-contain"
-            />
-            <div className="leading-tight">
-              <div className="font-semibold text-lg">Clínica Oftalmológica</div>
-              <div className="text-xs text-[#7A7A7A]">Dra. Marta Sampil</div>
-            </div>
-          </div>
-
-          {/* NAV DESKTOP */}
-          <nav className="hidden md:flex items-center gap-8">
-            {["inicio", "sobre-mi", "galeria", "pedir-cita"].map((section) => (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className={`text-sm uppercase tracking-wider transition ${
-                  activeSection === section
-                    ? "text-[#B39B7C]"
-                    : "text-[#2E2E2E] hover:text-[#B39B7C]"
-                }`}
-              >
-                {section === "inicio" && "Inicio"}
-                {section === "sobre-mi" && "Sobre mí"}
-                {section === "galeria" && "Galería"}
-                {section === "pedir-cita" && "Pedir cita"}
-              </button>
-            ))}
-          </nav>
-
-          {/* MENU MOBILE */}
-          <button
-            onClick={() => setIsMenuOpen((s) => !s)}
-            className="md:hidden p-2 rounded-md border border-[#D9C8A9] text-[#2E2E2E]"
-          >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-
-        {isMenuOpen && (
-          <div className="md:hidden bg-[#FAF8F4] border-t border-[#EDE7DE]">
-            <nav className="flex flex-col p-4 gap-2">
-              {["inicio", "sobre-mi", "galeria", "pedir-cita"].map(
-                (section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className="text-left px-2 py-2 text-[#2E2E2E] hover:text-[#B39B7C]"
-                  >
-                    {section === "inicio" && "Inicio"}
-                    {section === "sobre-mi" && "Sobre mí"}
-                    {section === "galeria" && "Galería"}
-                    {section === "pedir-cita" && "Pedir cita"}
-                  </button>
-                )
-              )}
-            </nav>
-          </div>
-        )}
-      </header>
+      <Header
+        isScrolled={isScrolled}
+        activeSection={activeSection}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        scrollToSection={scrollToSection}
+      />
 
       {/* HERO */}
       <section
@@ -192,7 +129,6 @@ const ClinicaOftalmologica = () => {
               <Calendar className="w-4 h-4" /> Pedir cita
             </button>
             <button
-              id="sobre-mi"
               onClick={() => scrollToSection("sobre-mi")}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#EDE7DE] bg-white text-sm font-medium hover:bg-[#FBF8F4] transition"
             >
@@ -203,7 +139,7 @@ const ClinicaOftalmologica = () => {
       </section>
 
       {/* SOBRE MÍ */}
-      <section className="py-16 bg-[#FAF8F4]">
+      <section id="sobre-mi" className="py-16 bg-[#FAF8F4]">
         <div className="container mx-auto px-5 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="mx-auto w-full max-w-[420px] rounded-2xl overflow-hidden shadow-sm bg-white">
@@ -230,11 +166,10 @@ const ClinicaOftalmologica = () => {
             </div>
           </div>
         </div>
-        <div id="galeria"></div>
       </section>
 
       {/* GALERÍA */}
-      <section className="py-16 bg-white">
+      <section id="galeria" className="py-16 bg-white">
         <div className="container mx-auto px-5 max-w-5xl">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-medium">Nuestra clínica</h2>
@@ -279,11 +214,10 @@ const ClinicaOftalmologica = () => {
             </div>
           </div>
         </div>
-        <div id="pedir-cita"></div>
       </section>
 
       {/* PEDIR CITA */}
-      <section className="py-16 bg-[#FAF8F4]">
+      <section id="pedir-cita" className="py-16 bg-[#FAF8F4]">
         <div className="container mx-auto px-5 max-w-3xl text-center">
           <h2 className="text-2xl font-medium mb-3">Pedir Cita</h2>
           <p className="text-[#7A7A7A] mb-6">
@@ -334,80 +268,7 @@ const ClinicaOftalmologica = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#EDE1CC] text-[#7A7A7A] py-10 border-t border-[#EDE7DE]">
-        <div className="container mx-auto px-5">
-          <div className="flex flex-col md:flex-row justify-between items-start gap-8">
-            {/* Columna 1: Logo y nombre */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <img
-                  src="imgs/logo_marta_sampil_vector.png"
-                  alt="Logo Clínica Marta Sampil"
-                  className="w-6 h-6"
-                />
-                <div className="text-sm font-medium">
-                  Clínica Oftalmológica · Dra. Marta Sampil
-                </div>
-              </div>
-              <div className="text-xs">
-                <p>© 2025 · Todos los derechos reservados</p>
-              </div>
-            </div>
-
-            {/* Columna 2: Contacto */}
-            <div className="text-xs leading-relaxed">
-              <p>
-                <strong>Dirección:</strong> R. Roberto Baamonde, 24, 1º B, 27400 Monforte de Lemos, Lugo
-              </p>
-              <p>
-                <strong>Teléfono:</strong>{" "}
-                <a href="tel:+34981578250" className="hover:underline">
-                  982 007 791
-                </a>
-              </p>
-              <p>
-                <strong>Email:</strong>{" "}
-                <a
-                  href="mailto:info@martasampil.es"
-                  className="hover:underline"
-                >
-                  contacto@clinicamartasampil.com
-                </a>
-              </p>
-            </div>
-
-            {/* Columna 3: Horario */}
-            <div className="text-xs">
-              <p>
-                <strong>Horario:</strong>
-              </p>
-              <p>Lunes a viernes: 10:00 - 13:30</p>
-              <p>Lunes, martes y jueves: 16:00 - 19:30</p>
-            </div>
-
-            {/* Columna 4: Información legal */}
-            <div className="text-xs">
-              <p>
-                <strong>Nº Registro Sanitario:</strong> C-27-001390
-              </p>
-              <p>
-                <strong>Colegiada nº:</strong> 273607051
-              </p>
-              <div className="flex flex-col mt-2 space-y-1">
-                <Link to="/politica-privacidad" className="hover:underline">
-                  Política de Privacidad
-                </Link>
-                <Link to="/aviso-legal" className="hover:underline">
-                  Aviso legal
-                </Link>
-                <Link to="/politica-cookies" className="hover:underline font-semibold">
-                  Política de cookies
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* WHATSAPP FLOATING */}
       <a

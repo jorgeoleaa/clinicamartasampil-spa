@@ -3,12 +3,10 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function AvisoLegal() {
-  // Estados para la navegación y scroll
   const [activeSection, setActiveSection] = useState<string>("");
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  // Efecto para detectar scroll y cambiar la opacidad del header
   useEffect(() => {
     const handleScroll = (): void => {
       setIsScrolled(window.scrollY > 50);
