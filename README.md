@@ -109,7 +109,7 @@ npm run lint
 - 📞 **Teléfono**: [982 007 791](tel:+34982007791)
 - 📧 **Email**: [contacto@clinicamartasampil.com](mailto:contacto@clinicamartasampil.com)
 - 💬 **WhatsApp**: [607 096 268](https://wa.me/34607096268)
-- 📍 **Ubicación**: Chantada, Galicia, España
+- 📍 **Ubicación**: Monforte de Lemos, Galicia, España
 
 ## 🤝 Contribuciones
 
