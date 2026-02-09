@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import Hero from "./components/hero";
+import Whatsapp from "./components/whatsapp";
 
 const ClinicaOftalmologica = () => {
   const [activeSection, setActiveSection] = useState("inicio");
@@ -225,19 +226,7 @@ const ClinicaOftalmologica = () => {
       <Footer />
 
       {/* WHATSAPP FLOATING */}
-      <a
-        href="https://wa.me/34607096268?text=Hola%2C%20me%20gustaría%20pedir%20una%20cita"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="WhatsApp"
-        className="fixed right-5 bottom-5 z-50"
-      >
-        <img
-          src="imgs/whatsapp.png"
-          alt="WhatsApp"
-          className="w-14 h-14 object-contain hover:scale-110 transition"
-        />
-      </a>
+      <Whatsapp />
     </div>
   );
 };
