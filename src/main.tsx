@@ -7,7 +7,7 @@ import SobreMi from './sobreMi.tsx'
 import ScrollToTop from './scrollTop.tsx' // <-- importa el componente
 import PoliticaPrivacidad from './politicaPrivacidad.tsx'
 import CookiesPolitica from './cookiesPolitica.tsx'
-import AvisoLegal from './avisoLegal.tsx'
+import AvisoLegal from './pages/avisoLegal.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

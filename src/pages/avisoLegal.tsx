@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import Header from "../components/header";
+
 export default function AvisoLegal() {
-  const [activeSection, setActiveSection] = useState<string>("");
+
+  const [activeSection] = useState<string>("");
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -15,87 +17,16 @@ export default function AvisoLegal() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const sections = ["inicio", "sobre-mi", "galeria", "pedir-cita"];
-
   return (
     <>
       {/* HEADER */}
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "backdrop-blur-sm bg-[#EDE1CC]/90 shadow-sm"
-            : "bg-[#EDE1CC]"
-        }`}
-      >
-        <div className="container mx-auto px-5 py-4 flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <img
-              src="/imgs/logo_marta_sampil_vector.png"
-              alt="Logo Clínica Oftalmológica Dra. Marta Sampil"
-              className="h-12 md:h-12 w-auto object-contain"
-            />
-            <div className="leading-tight">
-              <div className="font-semibold text-lg">Clínica Oftalmológica</div>
-              <div className="text-xs text-[#7A7A7A]">Dra. Marta Sampil</div>
-            </div>
-          </div>
-
-          {/* NAV DESKTOP */}
-          <nav className="hidden md:flex items-center gap-8">
-            {sections.map((section) => (
-              <a
-                key={section}
-                href={section === "inicio" ? "/" : `/#${section}`}
-                onClick={() => setActiveSection(section)}
-                className={`text-sm uppercase tracking-wider transition ${
-                  activeSection === section
-                    ? "text-[#B39B7C]"
-                    : "text-[#2E2E2E] hover:text-[#B39B7C]"
-                }`}
-              >
-                {section === "inicio" && "Inicio"}
-                {section === "sobre-mi" && "Sobre mí"}
-                {section === "galeria" && "Galería"}
-                {section === "pedir-cita" && "Pedir cita"}
-              </a>
-            ))}
-          </nav>
-
-          {/* MENU MOBILE BUTTON */}
-          <button
-            onClick={() => setIsMenuOpen((s) => !s)}
-            className="md:hidden p-2 rounded-md border border-[#D9C8A9] text-[#2E2E2E]"
-            aria-label="Abrir menú"
-          >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-
-        {/* NAV MÓVIL */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-[#FAF8F4] border-t border-[#EDE7DE]">
-            <nav className="flex flex-col p-4 gap-2">
-              {sections.map((section) => (
-                <a
-                  key={section}
-                  href={section === "inicio" ? "/" : `/#${section}`}
-                  onClick={() => {
-                    setActiveSection(section);
-                    setIsMenuOpen(false);
-                  }}
-                  className="text-left px-2 py-2 text-[#2E2E2E] hover:text-[#B39B7C]"
-                >
-                  {section === "inicio" && "Inicio"}
-                  {section === "sobre-mi" && "Sobre mí"}
-                  {section === "galeria" && "Galería"}
-                  {section === "pedir-cita" && "Pedir cita"}
-                </a>
-              ))}
-            </nav>
-          </div>
-        )}
-      </header>
+      <Header
+        isScrolled={isScrolled}
+        activeSection={activeSection}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        scrollToSection={() => {}}
+      />
 
       {/* CONTENIDO PRINCIPAL - AVISO LEGAL */}
       <main className="pt-40 pb-20 px-6">
