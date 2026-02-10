@@ -14,8 +14,6 @@ import Whatsapp from "./components/whatsapp";
 const ClinicaOftalmologica = () => {
   const [activeSection, setActiveSection] = useState("inicio");
   const [currentImage, setCurrentImage] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const galleryImages = [
     {
@@ -52,6 +50,7 @@ const ClinicaOftalmologica = () => {
     }
   ];
 
+  // Galería automática
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % galleryImages.length);
@@ -59,9 +58,35 @@ const ClinicaOftalmologica = () => {
     return () => clearInterval(interval);
   }, [galleryImages.length]);
 
+  // Detectar sección visible con Intersection Observer
+  useEffect(() => {
+    const sections = ["inicio", "sobre-mi", "galeria", "pedir-cita"];
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+            // Actualizar el hash de la URL
+            window.history.replaceState(null, '', `#${entry.target.id}`);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Activar cuando el 30% de la sección es visible
+        rootMargin: "-100px 0px -50% 0px" // Ajuste para que active antes
+      }
+    );
+
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToSection = (id: string) => {
-    setActiveSection(id);
-    setIsMenuOpen(false);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };

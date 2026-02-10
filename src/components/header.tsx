@@ -12,14 +12,27 @@ const Header = ({ activeSection: propActiveSection }: HeaderProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Usar activeSection de props si existe, sino cadena vacía
-  const activeSection = propActiveSection || "";
+  // Usar activeSection de props si existe, sino extraer del hash de la URL
+  const activeSection = propActiveSection || location.hash.replace('#', '') || "";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Efecto para hacer scroll automático cuando llegamos desde otra página con hash
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const sectionId = location.hash.replace('#', '');
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   const scrollToSection = (id: string) => {
     setIsMenuOpen(false);
@@ -32,7 +45,11 @@ const Header = ({ activeSection: propActiveSection }: HeaderProps) => {
     
     // Si estamos en la home, hacer scroll normal
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      // Actualizar la URL con el hash
+      window.history.pushState(null, '', `#${id}`);
+    }
   };
 
   return (
@@ -64,7 +81,7 @@ const Header = ({ activeSection: propActiveSection }: HeaderProps) => {
               onClick={() => scrollToSection(section)}
               className={`text-sm uppercase tracking-wider transition ${
                 activeSection === section
-                  ? "text-[#B39B7C]"
+                  ? "text-[#B39B7C] font-medium"
                   : "text-[#2E2E2E] hover:text-[#B39B7C]"
               }`}
             >
@@ -92,7 +109,11 @@ const Header = ({ activeSection: propActiveSection }: HeaderProps) => {
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="text-left px-2 py-2 text-[#2E2E2E] hover:text-[#B39B7C]"
+                className={`text-left px-2 py-2 transition ${
+                  activeSection === section
+                    ? "text-[#B39B7C] font-medium"
+                    : "text-[#2E2E2E] hover:text-[#B39B7C]"
+                }`}
               >
                 {section === "inicio" && "Inicio"}
                 {section === "sobre-mi" && "Sobre mí"}
