@@ -1,20 +1,40 @@
 import { X, Menu } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface HeaderProps {
-  isScrolled: boolean;
-  activeSection: string;
-  isMenuOpen: boolean;
-  setIsMenuOpen: (value: boolean | ((prev: boolean) => boolean)) => void;
-  scrollToSection: (id: string) => void;
+  activeSection?: string;
 }
 
-const Header = ({
-  isScrolled,
-  activeSection,
-  isMenuOpen,
-  setIsMenuOpen,
-  scrollToSection,
-}: HeaderProps) => {
+const Header = ({ activeSection: propActiveSection }: HeaderProps) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Usar activeSection de props si existe, sino cadena vacía
+  const activeSection = propActiveSection || "";
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    setIsMenuOpen(false);
+    
+    // Si no estamos en la home, navegar a la home con el hash
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+      return;
+    }
+    
+    // Si estamos en la home, hacer scroll normal
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -26,7 +46,7 @@ const Header = ({
       <div className="container mx-auto px-5 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img
-            src="imgs/logo_marta_sampil_vector.png"
+            src="/imgs/logo_marta_sampil_vector.png"
             alt="Logo Clínica Oftalmológica Dra. Marta Sampil"
             className="h-12 md:h-12 w-auto object-contain"
           />

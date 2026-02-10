@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import SobreMi from './pages/sobreMi.tsx'
 import ScrollToTop from './scrollTop.tsx' // <-- importa el componente
 import PoliticaPrivacidad from './politicaPrivacidad.tsx'
-import CookiesPolitica from './cookiesPolitica.tsx'
+import CookiesPolitica from './pages/cookiesPolitica.tsx'
 import AvisoLegal from './pages/avisoLegal.tsx'
 
 createRoot(document.getElementById('root')!).render(

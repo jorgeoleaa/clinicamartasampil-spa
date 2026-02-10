@@ -14,8 +14,8 @@ import Whatsapp from "./components/whatsapp";
 const ClinicaOftalmologica = () => {
   const [activeSection, setActiveSection] = useState("inicio");
   const [currentImage, setCurrentImage] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const galleryImages = [
     {
@@ -53,12 +53,6 @@ const ClinicaOftalmologica = () => {
   ];
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % galleryImages.length);
     }, 4000);
@@ -82,13 +76,7 @@ const ClinicaOftalmologica = () => {
   return (
     <div className="min-h-screen bg-white text-[#2E2E2E]">
       {/* HEADER */}
-      <Header
-        isScrolled={isScrolled}
-        activeSection={activeSection}
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-        scrollToSection={scrollToSection}
-      />
+      <Header activeSection={activeSection} />
 
       {/* HERO */}
       <Hero scrollToSection={scrollToSection} />
