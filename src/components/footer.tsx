@@ -69,7 +69,7 @@ const Footer: FC = () => {
               </Link>
               <Link
                 to="/politica-cookies"
-                className="hover:underline font-semibold"
+                className="hover:underline"
               >
                 Política de cookies
               </Link>
