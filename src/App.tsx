@@ -14,6 +14,7 @@ import Whatsapp from "./components/whatsapp";
 const ClinicaOftalmologica = () => {
   const [activeSection, setActiveSection] = useState("inicio");
   const [currentImage, setCurrentImage] = useState(0);
+  const [imageOrientation, setImageOrientation] = useState<"portrait" | "landscape">("landscape");
 
   const galleryImages = [
     {
@@ -57,6 +58,19 @@ const ClinicaOftalmologica = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, [galleryImages.length]);
+
+  // Detectar orientación de la imagen actual
+  useEffect(() => {
+    const img = new Image();
+    img.src = galleryImages[currentImage].src;
+    img.onload = () => {
+      if (img.naturalHeight > img.naturalWidth) {
+        setImageOrientation("portrait");
+      } else {
+        setImageOrientation("landscape");
+      }
+    };
+  }, [currentImage, galleryImages]);
 
   // Detectar sección visible con Intersection Observer
   useEffect(() => {
@@ -147,26 +161,30 @@ const ClinicaOftalmologica = () => {
             </p>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-sm">
+          <div className="relative rounded-2xl overflow-hidden shadow-sm bg-[#FAF8F4] md:bg-transparent">
             <img
               src={galleryImages[currentImage].src}
               alt={galleryImages[currentImage].alt}
-              className="w-full h-[520px] object-cover"
+              className={`w-full md:object-cover transition-all ${
+                imageOrientation === "portrait"
+                  ? "h-[520px] object-contain md:h-[600px]"
+                  : "h-[400px] object-contain md:h-[520px]"
+              }`}
             />
 
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow"
               aria-label="Anterior"
             >
-              <ChevronLeft className="text-[#2E2E2E]" />
+              <ChevronLeft className="text-[#2E2E2E]" size={20} />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow"
               aria-label="Siguiente"
             >
-              <ChevronRight className="text-[#2E2E2E]" />
+              <ChevronRight className="text-[#2E2E2E]" size={20} />
             </button>
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
@@ -174,7 +192,7 @@ const ClinicaOftalmologica = () => {
                 <button
                   key={idx}
                   onClick={() => setCurrentImage(idx)}
-                  className={`w-3 h-3 rounded-full ${
+                  className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition ${
                     currentImage === idx ? "bg-[#B39B7C]" : "bg-white/70"
                   }`}
                 />
