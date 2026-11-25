@@ -1,150 +1,74 @@
-# 👁️ Clínica Oftalmológica Dra. Marta Sampil
+# Clínica Oftalmológica Dra. Marta Sampil
 
-> Sitio web moderno y elegante para la clínica oftalmológica de la Dra. Marta Sampil en Chantada, Galicia.
+Web de la clínica oftalmológica de la Dra. Marta Sampil en Monforte de Lemos (Lugo):
+[clinicamartasampil.com](https://clinicamartasampil.com).
 
-![React](https://img.shields.io/badge/React-18.x-61dafb?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38bdf8?logo=tailwindcss&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green)
+SPA estática construida con **React 19**, **TypeScript**, **React Router 7**, **Tailwind CSS 3** y **Vite 7**.
 
-## ✨ Características
+## Requisitos
 
-- 🎨 **Diseño Elegante**: Interfaz minimalista con paleta de colores cálidos y profesionales
-- 📱 **Totalmente Responsive**: Experiencia optimizada en móviles, tablets y escritorio
-- 🖼️ **Galería Interactiva**: Carrusel automático de las instalaciones de la clínica
-- 📍 **Integración con Maps**: Mapa embebido de Google Maps para ubicación exacta
-- 💬 **Contacto Directo**: Botones de WhatsApp, teléfono y email para citas rápidas
-- 🎯 **Navegación Fluida**: Scroll suave entre secciones con indicador de sección activa
-- ♿ **Accesible**: Etiquetas ARIA y navegación por teclado
+- Node.js ≥ 20.19 (la versión de referencia está en [`.nvmrc`](.nvmrc): `nvm use`)
 
-## 🚀 Tecnologías
+## Scripts
 
-- **React 18** - Biblioteca UI moderna
-- **TypeScript** - Tipado estático para mayor robustez
-- **Tailwind CSS** - Estilos utility-first
-- **React Router** - Navegación entre páginas
-- **Lucide React** - Iconos modernos y ligeros
-- **Vite** - Build tool ultrarrápido
+| Comando           | Descripción                                                   |
+| ----------------- | ------------------------------------------------------------- |
+| `npm run dev`     | Servidor de desarrollo (`--host` para abrirlo desde el móvil) |
+| `npm run build`   | Chequeo de tipos y build de producción en `dist/`             |
+| `npm run preview` | Sirve `dist/` en local, igual que en producción               |
+| `npm test`        | Tests (Vitest + Testing Library)                              |
+| `npm run lint`    | ESLint, incluidas reglas de accesibilidad (`jsx-a11y`)        |
+| `npm run format`  | Formatea con Prettier (ordena también las clases de Tailwind) |
+| `npm run check`   | Todo lo anterior salvo el build; es lo que ejecuta la CI      |
 
-## 📦 Instalación
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/tu-usuario/clinica-oftalmologica.git
-
-# Navegar al directorio
-cd clinica-oftalmologica
-
-# Instalar dependencias
-npm install
-
-# Iniciar servidor de desarrollo
-npm run dev
-```
-
-## 🏗️ Estructura del Proyecto
+## Estructura
 
 ```
 src/
+├── app/          # Enrutado, layout raíz, páginas de error y 404
 ├── components/
-│   ├── Header.tsx          # Navegación principal
-│   └── Footer.tsx          # Pie de página
-├── pages/
-│   ├── ClinicaOftalmologica.tsx  # Página principal
-│   └── SobreMi.tsx         # Página "Sobre mí"
-├── assets/
-│   └── imgs/               # Imágenes y logos
-└── App.tsx                 # Componente raíz
+│   ├── layout/   # Cabecera, pie, botón de WhatsApp, gestión de scroll y título
+│   └── ui/       # Primitivas reutilizables (estilos de botón, Section, Logo)
+├── config/       # Datos de la clínica (site.ts) y navegación: única fuente de verdad
+├── content/      # Textos y listados (galería, formación, experiencia)
+├── features/     # Páginas agrupadas por funcionalidad: home, about, legal
+├── hooks/        # Lógica reutilizable (carrusel, sección activa, media queries)
+├── lib/          # Utilidades sin dependencias de React
+├── styles/       # CSS global y tokens de color
+└── test/         # Configuración del entorno de tests
 ```
 
-## 🎨 Paleta de Colores
+Convenciones:
 
-| Color | Hex | Uso |
-|-------|-----|-----|
-| Beige Principal | `#EDE1CC` | Header, fondos |
-| Dorado | `#B39B7C` | Botones, acentos |
-| Gris Oscuro | `#2E2E2E` | Texto principal |
-| Gris Medio | `#7A7A7A` | Texto secundario |
-| Beige Claro | `#FAF8F4` | Fondos alternativos |
+- **Datos de contacto, horario y registro sanitario** se editan solo en
+  [`src/config/site.ts`](src/config/site.ts). Los datos estructurados para buscadores (JSON-LD) de
+  [`index.html`](index.html) deben coincidir con ellos; un test lo comprueba.
+- **Colores**: definidos como variables CSS en [`src/styles/index.css`](src/styles/index.css) y
+  expuestos a Tailwind (`text-ink`, `bg-sand-50`, `text-gold-700`…). Los tonos de texto cumplen
+  WCAG AA. No se usan valores hexadecimales sueltos en los componentes.
+- **Páginas secundarias** se cargan de forma diferida (`lazy` en
+  [`src/app/router.tsx`](src/app/router.tsx)); cada ruta define su título en `handle.title`.
+- **Imágenes**: en `public/imgs`, en WebP y a un máximo de 1600 px de lado. Las fotos nuevas deben
+  optimizarse antes de añadirlas (sin metadatos de ubicación).
+- El código está en inglés; los textos y las URLs, en español.
 
-## 📄 Secciones
+## Despliegue
 
-### 🏠 Inicio (Hero)
-Presentación principal con logo, título y llamados a la acción.
+`npm run build` genera `dist/`, que se sube tal cual al hosting.
 
-### 👩‍⚕️ Sobre Mí
-Información sobre la Dra. Marta Sampil y su experiencia profesional.
+Es una SPA con rutas reales (`/sobremi`, `/aviso-legal`…), así que el servidor debe devolver
+`index.html` para cualquier ruta que no sea un fichero:
 
-### 🖼️ Galería
-Carrusel interactivo de 8 imágenes de las instalaciones de la clínica.
+- **Apache**: incluido en [`public/.htaccess`](public/.htaccess) (también configura la caché).
+- **Nginx**: `try_files $uri $uri/ /index.html;`
+- **Netlify / Cloudflare Pages**: regla `/* /index.html 200` en `public/_redirects`.
 
-### 📅 Pedir Cita
-Opciones de contacto: teléfono, email, WhatsApp y ubicación en mapa.
+## Privacidad
 
-## 🛠️ Scripts Disponibles
-
-```bash
-# Desarrollo
-npm run dev
-
-# Build de producción
-npm run build
-
-# Preview de build
-npm run preview
-
-# Linting
-npm run lint
-```
-
-## 📱 Características Responsive
-
-- **Mobile First**: Diseño optimizado para móviles desde el principio
-- **Menú Hamburguesa**: Navegación colapsable en pantallas pequeñas
-- **Grid Adaptativo**: Layouts que se ajustan automáticamente
-- **Imágenes Optimizadas**: Carga eficiente en todos los dispositivos
-
-## 🌐 Información de Contacto
-
-- 📞 **Teléfono**: [982 007 791](tel:+34982007791)
-- 📧 **Email**: [contacto@clinicamartasampil.com](mailto:contacto@clinicamartasampil.com)
-- 💬 **WhatsApp**: [607 096 268](https://wa.me/34607096268)
-- 📍 **Ubicación**: Monforte de Lemos, Galicia, España
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'feat: add amazing feature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📝 Convenciones de Commits
-
-Este proyecto usa [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat:` - Nueva funcionalidad
-- `fix:` - Corrección de bugs
-- `refactor:` - Refactorización de código
-- `docs:` - Cambios en documentación
-- `style:` - Cambios de formato (no afectan código)
-- `test:` - Añadir o modificar tests
-- `chore:` - Tareas de mantenimiento
-
-## 📜 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 💙 Agradecimientos
-
-- Diseño inspirado en clínicas modernas europeas
-- Iconos de [Lucide Icons](https://lucide.dev/)
-- Fuentes de Google Fonts
+La web no instala cookies propias ni de analítica. La fuente se sirve desde el propio dominio, y el
+mapa de Google Maps solo se carga si el visitante lo pide. Cualquier integración nueva de terceros
+debe mantener ese criterio y reflejarse en la política de cookies.
 
 ---
 
-<p align="center">
-  Hecho con ❤️ para la Clínica Oftalmológica Dra. Marta Sampil
-</p>
+© Dra. Marta Sampil González. Todos los derechos reservados.
