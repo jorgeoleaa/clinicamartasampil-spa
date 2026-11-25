@@ -1,13 +1,78 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image" href="imgs/logo_marta_sampil_vector.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clínica Marta Sampil</title>
+    <!-- La web solo tiene tema claro: evita que Samsung Internet / Chrome Android la oscurezcan a la fuerza -->
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#EDE1CC" />
+
+    <title>Clínica Oftalmológica Dra. Marta Sampil · Monforte de Lemos</title>
+    <meta
+      name="description"
+      content="Clínica oftalmológica de la Dra. Marta Sampil en Monforte de Lemos (Lugo). Más de 15 años de experiencia. Pide cita por teléfono o WhatsApp."
+    />
+
+    <link rel="icon" type="image/png" href="/imgs/logo_marta_sampil_vector.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="/fonts/open-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Vista previa al compartir (WhatsApp, redes sociales) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Clínica Oftalmológica Dra. Marta Sampil" />
+    <meta property="og:title" content="Clínica Oftalmológica Dra. Marta Sampil" />
+    <meta
+      property="og:description"
+      content="Cuidamos tu visión con precisión, tecnología avanzada y un trato humano. Monforte de Lemos (Lugo)."
+    />
+    <meta property="og:url" content="https://clinicamartasampil.com/" />
+    <meta property="og:image" content="https://clinicamartasampil.com/imgs/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Datos estructurados para buscadores (ficha de negocio local). Mantener en sincronía con src/config/site.ts -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Clínica Oftalmológica Dra. Marta Sampil",
+        "url": "https://clinicamartasampil.com/",
+        "logo": "https://clinicamartasampil.com/imgs/logo_marta_sampil_vector.png",
+        "image": "https://clinicamartasampil.com/imgs/og-image.jpg",
+        "telephone": "+34982007791",
+        "email": "contacto@clinicamartasampil.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Roberto Baamonde, 24, 1º B",
+          "postalCode": "27400",
+          "addressLocality": "Monforte de Lemos",
+          "addressRegion": "Lugo",
+          "addressCountry": "ES"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 42.5198, "longitude": -7.5166 },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "10:00",
+            "closes": "13:30"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Thursday"],
+            "opens": "16:00",
+            "closes": "19:30"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

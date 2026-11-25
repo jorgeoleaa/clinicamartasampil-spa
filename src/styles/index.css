@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fuente servida desde el propio dominio (sin enviar la IP del visitante a Google) */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("/fonts/open-sans-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@layer base {
+  /*
+   * Tokens de color (canales RGB para que Tailwind admita opacidad: bg-sand-300/90).
+   * Un tema oscuro solo tendría que redefinir estas variables.
+   * Los tonos de texto cumplen WCAG AA (≥ 4,5:1) sobre los fondos claros.
+   */
+  :root {
+    color-scheme: light;
+
+    --color-ink: 46 46 46; /* #2E2E2E texto principal */
+    --color-muted: 92 92 92; /* #5C5C5C texto secundario */
+
+    --color-sand-50: 250 248 244; /* #FAF8F4 fondos de sección */
+    --color-sand-200: 237 231 222; /* #EDE7DE bordes suaves */
+    --color-sand-300: 237 225 204; /* #EDE1CC cabecera y pie */
+    --color-sand-400: 217 200 169; /* #D9C8A9 bordes marcados */
+
+    --color-gold-300: 179 155 124; /* #B39B7C dorado de marca, solo decorativo */
+    --color-gold-600: 122 99 71; /* #7A6347 fondo de botones (5,7:1 con blanco) */
+    --color-gold-700: 111 90 64; /* #6F5A40 texto dorado (≥ 5:1) */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-gold-600));
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}

@@ -1,25 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import SobreMi from './pages/sobreMi.tsx'
-import ScrollToTop from './scrollTop.tsx' // <-- importa el componente
-import PoliticaPrivacidad from './pages/politicaPrivacidad.tsx'
-import CookiesPolitica from './pages/cookiesPolitica.tsx'
-import AvisoLegal from './pages/avisoLegal.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import { router } from "@/app/router";
+import "@/styles/index.css";
 
-createRoot(document.getElementById('root')!).render(
+const container = document.getElementById("root");
+if (!container) throw new Error("No se ha encontrado el elemento #root en index.html");
+
+createRoot(container).render(
   <StrictMode>
-    <BrowserRouter>
-      <ScrollToTop /> 
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/sobremi" element={<SobreMi />} />
-        <Route path='/politica-privacidad' element={<PoliticaPrivacidad/>} />
-        <Route path='/politica-cookies' element={<CookiesPolitica/>} />
-        <Route path='/aviso-legal' element={<AvisoLegal/>} />
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </StrictMode>,
-)
+);

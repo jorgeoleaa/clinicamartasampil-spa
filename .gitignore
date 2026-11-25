@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Builds empaquetados para subir al hosting
+*.zip
+
+# Tests
+coverage
