@@ -11,15 +11,15 @@ Static SPA built with **React 19**, **TypeScript**, **React Router 7**, **Tailwi
 
 ## Scripts
 
-| Command           | Description                                                    |
-| ----------------- | -------------------------------------------------------------- |
-| `npm run dev`     | Development server (`--host` to open it from a phone)          |
-| `npm run build`   | Type check and production build into `dist/`                   |
-| `npm run preview` | Serves `dist/` locally, exactly as in production               |
-| `npm test`        | Tests (Vitest + Testing Library)                               |
-| `npm run lint`    | ESLint, including accessibility rules (`jsx-a11y`)             |
-| `npm run format`  | Formats with Prettier (also sorts Tailwind classes)            |
-| `npm run check`   | Everything above except the build; this is what CI runs        |
+| Command           | Description                                             |
+| ----------------- | ------------------------------------------------------- |
+| `npm run dev`     | Development server (`--host` to open it from a phone)   |
+| `npm run build`   | Type check and production build into `dist/`            |
+| `npm run preview` | Serves `dist/` locally, exactly as in production        |
+| `npm test`        | Tests (Vitest + Testing Library)                        |
+| `npm run lint`    | ESLint, including accessibility rules (`jsx-a11y`)      |
+| `npm run format`  | Formats with Prettier (also sorts Tailwind classes)     |
+| `npm run check`   | Everything above except the build; this is what CI runs |
 
 ## Structure
 
