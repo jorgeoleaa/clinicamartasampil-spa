@@ -22,7 +22,7 @@
    * Los tonos de texto cumplen WCAG AA (≥ 4,5:1) sobre los fondos claros.
    */
   :root {
-    color-scheme: light;
+    color-scheme: only light;
 
     --color-ink: 46 46 46; /* #2E2E2E texto principal */
     --color-muted: 92 92 92; /* #5C5C5C texto secundario */
